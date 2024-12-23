@@ -13,7 +13,10 @@ void main() {
 
   setUpAll(() async {
     dbTest = getPostgresPool(getEndpoint(), appName: 'tests_conn');
-    await dbTest.run((s) => s.execute('SELECT 1'));
+  });
+
+  tearDownAll(() async {
+    await dbTest.close();
   });
 
   test('working server', () async {

@@ -93,7 +93,7 @@ class AbortSignalAwarePool<T> extends pool_impl.PoolImplementation<T> {
           if (abortSignal.wasAborted) {
             // Interrupt the pg connection if the http request has finished
             // to avoid dangling connections
-            unawaited(connection.close(interruptRunning: true));
+            unawaited(connection.close(force: true));
           }
           rethrow;
         }
